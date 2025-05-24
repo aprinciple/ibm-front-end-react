@@ -279,7 +279,7 @@ export const ProductList = () => {
 		<>
 			<header className='header'>
 				<div className='container header__wrapper'>
-					<a className='logo' href='/'>
+					<a className='logo' href='https://aprinciple.github.io/ibm-front-end-react/'>
 						<img className='logo__image' src='img/logo.svg' alt='Logo' />
 						<span className='logo__text'>Leaf & Love</span>
 					</a>
