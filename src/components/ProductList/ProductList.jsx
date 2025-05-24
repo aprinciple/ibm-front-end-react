@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../redux/CartSlice';
 import { Cart } from '../Cart/Cart';
+import { ProductItem } from '../ProductItem/ProductItem';
+import { CartButton } from '../CartButton/CartButton';
 import './ProductList.css';
 
 const categoriesData = [
@@ -270,18 +270,10 @@ const plantsData = [
 ];
 
 export const ProductList = () => {
-	const dispatch = useDispatch();
-	const cart = useSelector(state => state.cart.items);
 	const [showCart, setShowCart] = useState(false);
-	const [addedToCart, setAddedToCart] = useState(new Set());
 
 	const handleCart = () => setShowCart(true);
 	const handleContinueShopping = () => setShowCart(false);
-
-	const handleAddToCart = product => {
-		dispatch(addItem(product));
-		setAddedToCart(prevState => new Set(prevState).add(product.id));
-	};
 
 	return (
 		<>
@@ -291,9 +283,7 @@ export const ProductList = () => {
 						<img className='logo__image' src='img/logo.svg' alt='Logo' />
 						<span className='logo__text'>Leaf & Love</span>
 					</a>
-					<button type='button' className='b-cart' aria-label='Cart' onClick={() => handleCart()}>
-						<span className='b-cart__quantity-count'>{cart.length}</span>
-					</button>
+					<CartButton handleCart={handleCart} />
 				</div>
 			</header>
 
@@ -305,24 +295,7 @@ export const ProductList = () => {
 								<h2 className='products__category-title'>{category.name}</h2>
 								<ul className='products-list'>
 									{(plantsData.find(item => item.category === category.id)?.plants || []).map(plant => (
-										<li key={plant.id} className='products-list__item product'>
-											<picture className='product__picture'>
-												<img className='product__image' src={plant.image} alt={plant.name} />
-											</picture>
-											<div className='product__info'>
-												<h3 className='product__title'>{plant.name}</h3>
-												<p className='product__description'>{plant.description}</p>
-												<span className='product__price'>{plant.price}$</span>
-												<button
-													type='button'
-													className='button product__action'
-													onClick={() => handleAddToCart(plant)}
-													disabled={addedToCart.has(plant.id)}
-												>
-													{addedToCart.has(plant.id) ? 'Added to Cart' : 'Add to Cart'}
-												</button>
-											</div>
-										</li>
+										<ProductItem key={plant.id} product={plant} />
 									))}
 								</ul>
 							</section>

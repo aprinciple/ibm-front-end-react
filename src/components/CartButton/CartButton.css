@@ -1,0 +1,27 @@
+.b-cart {
+	position: relative;
+	display: grid;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background-color: transparent;
+	background-image: url('img/cart.svg');
+	background-repeat: no-repeat;
+}
+
+.b-cart__count {
+	position: absolute;
+	bottom: 0;
+	left: -7px;
+	display: grid;
+	place-items: center;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background-color: #f94222;
+	font-weight: 500;
+	font-size: 13px;
+	color: #fff;
+}
