@@ -5,6 +5,7 @@ import './Cart.css';
 export const Cart = ({ onContinueShopping }) => {
 	const cart = useSelector(state => state.cart.items);
 	const totalPrice = useSelector(state => state.cart.totalPrice);
+	const totalAmount = useSelector(state => state.cart.totalAmount);
 
 	const handleContinueShopping = () => onContinueShopping();
 	const handleCheckoutShopping = () => alert('Coming Soon');
@@ -21,7 +22,7 @@ export const Cart = ({ onContinueShopping }) => {
 			) : (
 				<>
 					<header className='cart__header'>
-						<h2 className='cart__total-amount'>Total amount: {cart.length} pcs.</h2>
+						<h2 className='cart__total-amount'>Total amount: {totalAmount} pcs.</h2>
 					</header>
 					<ul className='cart__list'>
 						{cart.map(item => (
